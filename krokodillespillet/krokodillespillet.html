@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="krokodillespillet.css">
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        // let number1 = Math.floor(Math.random() * 10);
+        // let number2 = Math.floor(Math.random() * 10);
+        let app = document.getElementById('app');
+        let score = 0;
+        let retrieve1 = 0;
+        let retrieve2 = 0;
+
+        updateView();
+        function updateView(){
+            let jesus = ``;
+            jesus += `
+            <div class="gameContainer">
+                
+                <img class="picture" src="crop.png">
+                <div id="number1">
+                    
+                </div>
+                <input id="a">
+                <div id="number2">
+                    
+                </div>
+                <button onclick="checkIfCorrectAnswer(document.getElementById('a').value)">submit</button>
+                <button onclick="generateNumbers()">reset</button>
+                <div id="score"></div>
+                <div class="gameDescription">Velg riktig operatør "> betyr tall 1 er større" "== betyr tallene er like" "< betyr tall 2 større"
+                <br> Trykk "reset" for å generere tallene og "submit" for å sjekke om du fikk riktig resultat</div>
+            </div>
+            `;
+            app.innerHTML = jesus
+        }
+        function generateNumbers(){
+            let number1 = Math.floor(Math.random() * 10);
+            let number2 = Math.floor(Math.random() * 10);
+            let elem1 = number1
+            let elem2 = number2
+            document.getElementById('number1').innerHTML = elem1;
+            document.getElementById('number2').innerHTML = elem2;
+            retrieve1 = elem1;
+            retrieve2 = elem2;
+
+            // return elem1;
+            // return elem2;
+        }
+
+        function checkIfCorrectAnswer(a){
+            number = a
+            console.log(number)
+            console.log(retrieve1)
+            console.log(retrieve2)
+            // elem1 = number1
+            // elem2 = number2
+            // number =
+            if(number == ">" && retrieve1 > retrieve2){
+                addPointToScore()
+            }
+            else if(number == "==" && retrieve1 == retrieve2){
+                addPointToScore()
+            }
+            else if(number == "<" && retrieve1 < retrieve2){
+                addPointToScore()
+            }
+         
+            else{
+                subtractPointToScore()
+            }
+        }
+
+
+        function addPointToScore(){
+            score++
+            document.getElementById('score').innerHTML = "Score:" + score
+        }
+
+        function subtractPointToScore(){
+            score--
+            document.getElementById('score').innerHTML = "Score:" + score
+        }
+    </script>
+</body>
+</html>
